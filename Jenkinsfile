@@ -1,12 +1,18 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_TAG = "${BUILD_NUMBER}"
+        DOCKERHUB_USERNAME = "abdul1s"
+        DOCKERHUB_REPO_NAME = "jenkins-test"
+
+    }
     stages {
         stage('BUILD DOCKER IMAGE') {
             steps {
                 echo 'Building Docker Image...'
                 echo 'Building...'
-                sh 'docker build -t abdul1s/jenkins-test:${BUILD_NUMBER} .'
+                sh 'docker build -t ${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO_NAME}:${IMAGE_TAG} .'
             }
         }
 
@@ -22,14 +28,14 @@ pipeline {
                     sh 'echo $pass | docker login -u $uname --password-stdin'
                 }
 
-                sh 'docker push abdul1s/jenkins-test:${BUILD_NUMBER}'
+                sh 'docker push ${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO_NAME}:${IMAGE_TAG}'
                 sh 'docker logout'
             }
         }
 
         stage('CLEANUP') {
             steps {
-                sh 'docker rmi abdul1s/jenkins-test:${BUILD_NUMBER}'
+                sh 'docker rmi ${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO_NAME}:${IMAGE_TAG}'
             }
         }
     }
