@@ -11,9 +11,8 @@ pipeline {
     stages {
         stage('CLEAN WORKSPACE') {
             steps {
-                script {
-                    cleanWs()
-                }
+                echo 'Cleaning workspace...'
+                deleteDir()
             }
         }
         stage('BUILD DOCKER IMAGE') {
