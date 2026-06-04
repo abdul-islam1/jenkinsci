@@ -9,12 +9,12 @@ pipeline {
     }
     
     stages {
-        stage('CLEAN WORKSPACE') {
-            steps {
-                echo 'Cleaning workspace...'
-                deleteDir()
-            }
-        }
+        // stage('CLEAN WORKSPACE') {
+        //     steps {
+        //         echo 'Cleaning workspace...'
+        //         deleteDir()
+        //     }
+        // }
         stage('BUILD DOCKER IMAGE') {
             steps {
                 echo 'Building Docker Image...'
