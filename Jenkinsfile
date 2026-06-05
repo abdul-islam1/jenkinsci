@@ -48,8 +48,7 @@ pipeline {
         stage('CLEANING WORKSPACE') {
             steps {
                 script {
-            
-                    ClearWs()
+                    cleanWs()
                 }
             }
         }
