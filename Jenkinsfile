@@ -13,7 +13,6 @@ pipeline {
         stage('BUILD DOCKER IMAGE') {
             steps {
                 echo 'Building Docker Image...'
-                echo 'Building...'
                 sh 'docker build -t ${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO_NAME}:${IMAGE_TAG} .'
             }
         }
